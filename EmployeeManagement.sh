@@ -37,9 +37,13 @@ function check_Employee_wage()
 function cal_wage_for_month()
 {
    count=0
+   hour=0
+  calculatinghour=0
    total_wage=1
-   while [ $count -le 20 ]
+   while [ $count -le 20 ] && [[ $hour -le 100]]
    do
+        hour=$( hour $(()) )
+        calculatinghour=$(( $calculatinghour + hour ))
         res="$( check_Employee_wage $(()) )"
         total_wage=$(( $total_wage + $res ))
         ((count++))
@@ -47,3 +51,4 @@ function cal_wage_for_month()
         echo "$total_wage"
 }
 result=$( cal_wage_for_month $(()) )
+echo $result
