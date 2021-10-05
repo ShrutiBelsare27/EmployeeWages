@@ -9,23 +9,41 @@ function check_attend()
        echo "0" ;;
   1) 
        echo "1" ;;
-  2)
-       echo "2" ;;
   esac
 }
 
-res="$( check_attend $(()) )"
+  function hour()
+{
+  val="$( check_attend $(()) )"
+  if [ $val -eq 0 ]
+  then
+      val1=$((RANDOM%2))
+   	case $val1 in 
+	     0)
+		    hours=8
+	       echo $hours ;;
+        1)	
+		    hours=4
+		    echo $hours ;;
+      esac
+  fi
+}
 function check_Employee_wage()
 {
-    case $res in
-    0)
-         emp_Daily_wages=$((20*8))
-         echo $emp_Daily_wages ;;
-    1)
-         partime_Employee_wage=$((20*4))
-         echo $partime_Employee_wage ;;
-    2)
-         echo "employee is absent" ;;
-    esac
+   val=$( hour $(()) )
+   emp_Daily_wages=$((20*val))
+   echo $emp_Daily_wages
 }
-check_Employee_wage
+function cal_wage_for_month()
+{
+   count=0
+   total_wage=1
+   while [ $count -le 20 ]
+   do
+        res="$( check_Employee_wage $(()) )"
+        total_wage=$(( $total_wage + $res ))
+        ((count++))
+   done
+        echo "$total_wage"
+}
+result=$( cal_wage_for_month $(()) )
