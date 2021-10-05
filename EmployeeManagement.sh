@@ -3,7 +3,7 @@
 echo "Welcome to employee wage computation"
 function check_attend()
 {
-  attend=$((RANDOM%3))
+  attend=$((RANDOM%2))
   case $attend in
   0) 
        echo "0" ;;
@@ -12,7 +12,7 @@ function check_attend()
   esac
 }
 
-  function hour()
+  function gethour()
 {
   val="$( check_attend $(()) )"
   if [ $val -eq 0 ]
