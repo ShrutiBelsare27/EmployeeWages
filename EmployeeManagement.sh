@@ -19,7 +19,12 @@ function check_Employee_wage()
   then
          emp_Daily_wages=$((20*8))
          echo $emp_Daily_wages
-  else
+ elif [ $res -eq 1 ]
+  then
+         partime_Employee_wage=$((20*4))
+         echo $partime_Employee_wages 
+
+ else
          echo "employee is absent"
   fi
 }
