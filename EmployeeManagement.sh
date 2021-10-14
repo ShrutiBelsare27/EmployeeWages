@@ -53,7 +53,8 @@ function cal_wage_for_month()
       break;
     fi
    done
-        echo "$total_wage"
-        echo ${Storing_Wages[@]}
+        echo "Total wages are : $total_wage"
+        echo "Total days are: ${!Storing_Wages[@]}"
+         echo "Daily wages are: ${Storing_Wages[@]}"
 }
 cal_wage_for_month
