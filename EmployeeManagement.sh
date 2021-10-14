@@ -46,9 +46,14 @@ function cal_wage_for_month()
         calculatinghour=$(( $calculatinghour + hour ))
         res="$( check_Employee_wage $(()) )"
         total_wage=$(( $total_wage + $res ))
+        Storing_Wages[$count]=$res
         ((count++))
+    if [ $count -eq 20 ]
+     then
+      break;
+    fi
    done
         echo "$total_wage"
+        echo ${Storing_Wages[@]}
 }
-result=$( cal_wage_for_month $(()) )
-echo $result
+cal_wage_for_month
